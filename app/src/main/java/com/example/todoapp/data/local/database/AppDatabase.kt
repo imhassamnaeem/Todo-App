@@ -12,4 +12,5 @@ import com.example.todoapp.data.local.entity.ToDoTask
 )
 abstract class AppDatabase  : RoomDatabase() {
     abstract fun todoTaskDao(): TodoTaskDao
+
 }
