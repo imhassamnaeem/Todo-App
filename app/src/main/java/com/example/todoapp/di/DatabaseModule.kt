@@ -28,9 +28,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideTodoDao(
-        database : AppDatabase
-    ) : TodoTaskDao{
+    fun provideTodoDao(database : AppDatabase) : TodoTaskDao{
         return database.todoTaskDao()
     }
 
