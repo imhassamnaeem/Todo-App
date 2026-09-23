@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_4sdp"
+    android:layout_marginEnd="@dimen/_4sdp"
+    android:layout_marginBottom="@dimen/_8sdp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/_12sdp"
+    app:cardElevation="@dimen/_2sdp"
+    app:strokeColor="@color/black"
+    app:strokeWidth="@dimen/_1sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTaskName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/title_on_favourite"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/btnFavourite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnFavourite"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/remove_from_favourites"
+            android:padding="@dimen/_6sdp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/favourite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTaskDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@string/description"
+            android:textColor="@color/black"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTaskName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

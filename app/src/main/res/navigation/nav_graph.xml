@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.todoapp.presentation.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.example.todoapp.presentation.onboarding.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding">
+
+        <action
+            android:id="@+id/action_onBoardingFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/onBoardingFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.todoapp.presentation.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_favouritFragment"
+            app:destination="@id/favouritFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addToDoFragment"
+            app:destination="@id/addToDoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouritFragment"
+        android:name="com.example.todoapp.presentation.favourite.FavouriteFragment"
+        android:label="fragment_favourit"
+        tools:layout="@layout/fragment_favourit" />
+    <fragment
+        android:id="@+id/addToDoFragment"
+        android:name="com.example.todoapp.presentation.addtodo.AddToDoFragment"
+        android:label="fragment_add_to_do"
+        tools:layout="@layout/fragment_add_to_do">
+        <argument
+            android:name="taskId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_addToDoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+
+</navigation>

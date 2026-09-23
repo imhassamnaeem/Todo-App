@@ -1,0 +1,80 @@
+package com.example.todoapp.presentation.addtodo
+
+import android.annotation.SuppressLint
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.example.todoapp.data.local.entity.ToDoTask
+import com.example.todoapp.databinding.FragmentAddToDoBinding
+import com.example.todoapp.presentation.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+
+@AndroidEntryPoint
+class AddToDoFragment : BaseFragment<FragmentAddToDoBinding, AddToDoViewModel>(
+    FragmentAddToDoBinding::inflate
+) {
+    override val viewModel: AddToDoViewModel by viewModels()
+    private val args: AddToDoFragmentArgs by navArgs()
+    private var currentTask: ToDoTask? = null
+    override fun setUpViews() {
+        if (args.taskId != -1){
+            viewModel.getTaskById(args.taskId)
+        }
+        binding.btnSave.setOnClickListener {
+            val title = binding.evTitle.text.toString()
+            val description = binding.evDiscription.text.toString()
+            if (title.isEmpty()) {
+                binding.evTitle.error = "Title is required"
+                return@setOnClickListener
+            }
+            if (description.isEmpty()) {
+                binding.evDiscription.error = "Description is required"
+                return@setOnClickListener
+            }
+          if (currentTask == null){
+              val task = ToDoTask(
+                  title = title,
+                  description = description
+              )
+              viewModel.insertTask(task)
+          }
+            else{
+                val updateTask = currentTask!!.copy(
+                    title= title,
+                    description = description
+                )
+              viewModel.updateTask(updateTask)
+          }
+
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.taskEvent.collect { event ->
+                    when (event) {
+                        is TaskEvent.NavigateToHome ->
+                            findNavController().popBackStack()
+
+                        is TaskEvent.TaskInserted->
+                            event.task?.let {task ->
+                                currentTask = task
+                                binding.apply {
+                                    tvTodo.text = "Update Task"
+                                    evTitle.setText(task.title)
+                                    evDiscription.setText(task.description)
+                                    btnSave.text = "Update"
+                                }
+                            }
+                    }
+                }
+            }
+        }
+    }
+}

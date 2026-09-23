@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.home.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/taskHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tasks_list"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_28ssp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnFav"
+            android:layout_width="@dimen/_52sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/_8sdp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/favourite" />
+
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasksRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/_100sdp"
+        app:layout_constraintTop_toBottomOf="@id/taskHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_tasks"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/floating_action_edit_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:contentDescription="@string/floating_action_edit_button"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginEnd="@dimen/_40sdp"
+    android:layout_marginBottom="@dimen/_40sdp"
+    android:src="@drawable/writefloatingicon"
+    app:maxImageSize="@dimen/_40sdp"
+    android:backgroundTint="@color/ButtonColor"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

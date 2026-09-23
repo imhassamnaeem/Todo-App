@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_12sdp"
+    android:layout_marginVertical="@dimen/_4sdp"
+    app:strokeColor="@color/black"
+    app:cardCornerRadius="@dimen/_12sdp"
+    app:cardElevation="@dimen/_2sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTaskName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/learn_room_database"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTaskDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:maxLines="2"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:text="@string/study_entity_dao_and_database"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnFavourite"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/favourite"
+            android:padding="@dimen/_6sdp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/unfavourite" />
+
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/edit"
+            android:padding="@dimen/_6sdp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/edit" />
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/delete_icon"
+            android:padding="@dimen/_6sdp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/delteicon" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
