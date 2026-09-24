@@ -15,8 +15,11 @@ class AddToDoFragment : BaseFragment<FragmentAddToDoBinding, AddToDoViewModel>(
     FragmentAddToDoBinding::inflate
 ) {
     override val viewModel: AddToDoViewModel by viewModels()
+
     private val args: AddToDoFragmentArgs by navArgs()
+
     private var currentTask: ToDoTask? = null
+
     override fun setUpViews() {
         if (args.taskId != -1) {
             viewModel.getTaskById(args.taskId)
