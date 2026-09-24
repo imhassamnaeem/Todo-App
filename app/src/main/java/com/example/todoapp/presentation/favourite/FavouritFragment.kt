@@ -1,10 +1,9 @@
 package com.example.todoapp.presentation.favourite
 
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.core.shared.base.BaseFragment
-import com.example.todoapp.databinding.FragmentFavouritBinding
 import com.example.todoapp.core.shared.extensions.loadAndCollectOnStarted
+import com.example.todoapp.databinding.FragmentFavouritBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -12,21 +11,15 @@ class FavouriteFragment : BaseFragment<FragmentFavouritBinding, FavouriteViewMod
     FragmentFavouritBinding::inflate
 ) {
     override val viewModel: FavouriteViewModel by viewModels()
-    private lateinit var favouriteAdapter: FavouriteAdapter
-    override fun setUpViews() {
-        setUpFavouriteRecyclerView()
-    }
 
-    fun setUpFavouriteRecyclerView() {
-        favouriteAdapter = FavouriteAdapter(
-            onFavouriteClick = { task ->
-                viewModel.removeFromFavourite(task)
-            }
-        )
-        binding.favouriteRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = favouriteAdapter
+    private val favouriteAdapter = FavouriteAdapter(
+        onFavouriteClick = { task ->
+            viewModel.removeFromFavourite(task)
         }
+    )
+
+    override fun setUpViews() {
+        binding.favouriteRecyclerView.adapter = favouriteAdapter
     }
 
     override fun observeData() {
