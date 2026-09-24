@@ -6,7 +6,9 @@ import com.example.todoapp.data.local.entity.ToDoTask
 import com.example.todoapp.domain.repo.TaskRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,6 +21,11 @@ class HomeViewModel @Inject constructor(
     val homeEvent = _homeEvent.asSharedFlow()
 
     val tasks = repository.getAllTasks()
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            emptyList()
+        )
 
     fun navigateToAddTodo() {
         viewModelScope.launch {
