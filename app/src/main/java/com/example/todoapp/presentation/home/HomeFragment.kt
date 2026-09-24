@@ -14,7 +14,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     FragmentHomeBinding::inflate
 ) {
     override val viewModel: HomeViewModel by viewModels()
-    private lateinit var taskAdapter: TaskAdapter
+
+    private val taskAdapter =  TaskAdapter(
+        onFavouriteClick = {task ->
+            viewModel.addToFavourite(task)
+        },
+        onEditClick = {task ->
+            val action = HomeFragmentDirections
+                .actionHomeFragmentToAddToDoFragment(task.id)
+            findNavController().navigate(action)
+        },
+        onDeleteClick = {task ->
+            viewModel.deleteTask(task)
+        }
+    )
+
     override fun setUpViews() {
         binding.apply {
             floatingActionEditButton.setOnClickListener {
@@ -28,20 +42,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     }
 
     private fun setupRecyclerview() {
-        taskAdapter = TaskAdapter(
-            onFavouriteClick = { task ->
-                viewModel.addToFavourite(task)
-            },
-
-            onEditClick = { task ->
-                val action = HomeFragmentDirections
-                    .actionHomeFragmentToAddToDoFragment(task.id)
-                findNavController().navigate(action)
-            },
-            onDeleteClick = { task ->
-                viewModel.deleteTask(task)
-            }
-        )
         binding.tasksRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = taskAdapter
@@ -69,4 +69,3 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         }
     }
 }
-
