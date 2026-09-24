@@ -2,7 +2,6 @@ package com.example.todoapp.presentation.home
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
 import com.example.todoapp.core.shared.base.BaseFragment
 import com.example.todoapp.databinding.FragmentHomeBinding
@@ -38,14 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                 viewModel.navigateToFavourite()
             }
         }
-        setupRecyclerview()
-    }
-
-    private fun setupRecyclerview() {
-        binding.tasksRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = taskAdapter
-        }
+        binding.tasksRecyclerView.adapter = taskAdapter
     }
 
     override fun observeData() {
