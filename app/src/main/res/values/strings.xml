@@ -22,4 +22,5 @@
     <string name="title_on_favourite">title</string>
     <string name="remove_from_favourites">Remove from favourites</string>
     <string name="description">description</string>
+    <string name="favbutton">favButton</string>
 </resources>
