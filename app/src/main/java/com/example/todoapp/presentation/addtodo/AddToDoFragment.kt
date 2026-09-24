@@ -5,9 +5,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.todoapp.core.shared.base.BaseFragment
+import com.example.todoapp.core.shared.extensions.loadAndCollectOnStarted
 import com.example.todoapp.data.local.entity.ToDoTask
 import com.example.todoapp.databinding.FragmentAddToDoBinding
-import com.example.todoapp.core.shared.extensions.loadAndCollectOnStarted
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,31 +21,32 @@ class AddToDoFragment : BaseFragment<FragmentAddToDoBinding, AddToDoViewModel>(
         if (args.taskId != -1) {
             viewModel.getTaskById(args.taskId)
         }
-        binding.btnSave.setOnClickListener {
-            val title = binding.evTitle.text.toString()
-            val description = binding.evDiscription.text.toString()
-            if (title.isEmpty()) {
-                binding.evTitle.error = "Title is required"
-                return@setOnClickListener
+        binding.apply {
+            btnSave.setOnClickListener {
+                val title = evTitle.text.toString()
+                val description = evDiscription.text.toString()
+                if (title.isEmpty()) {
+                    evTitle.error = "Title is required"
+                    return@setOnClickListener
+                }
+                if (description.isEmpty()) {
+                    evDiscription.error = "Description is required"
+                    return@setOnClickListener
+                }
+                if (currentTask == null) {
+                    val task = ToDoTask(
+                        title = title,
+                        description = description
+                    )
+                    viewModel.insertTask(task)
+                } else {
+                    val updateTask = currentTask!!.copy(
+                        title = title,
+                        description = description
+                    )
+                    viewModel.updateTask(updateTask)
+                }
             }
-            if (description.isEmpty()) {
-                binding.evDiscription.error = "Description is required"
-                return@setOnClickListener
-            }
-            if (currentTask == null) {
-                val task = ToDoTask(
-                    title = title,
-                    description = description
-                )
-                viewModel.insertTask(task)
-            } else {
-                val updateTask = currentTask!!.copy(
-                    title = title,
-                    description = description
-                )
-                viewModel.updateTask(updateTask)
-            }
-
         }
     }
 
