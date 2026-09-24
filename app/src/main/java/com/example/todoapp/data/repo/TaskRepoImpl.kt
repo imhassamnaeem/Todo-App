@@ -1,13 +1,15 @@
-package com.example.todoapp.data.remote.repository
+package com.example.todoapp.data.repo
 
 import com.example.todoapp.data.local.dao.TodoTaskDao
 import com.example.todoapp.data.local.entity.ToDoTask
-import com.example.todoapp.domain.repository.TaskRepository
+import com.example.todoapp.domain.repo.TaskRepo
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class TaskRepoImplementation @Inject constructor(private val taskDao: TodoTaskDao) :
-    TaskRepository {
+class TaskRepoImpl @Inject constructor(
+    private val taskDao: TodoTaskDao
+) : TaskRepo {
+
     override fun getAllTasks(): Flow<List<ToDoTask>> {
         return taskDao.getAllTasks()
     }
@@ -16,7 +18,7 @@ class TaskRepoImplementation @Inject constructor(private val taskDao: TodoTaskDa
         return taskDao.getTaskById(taskId)
     }
 
-    override fun getFavouriteTask() : Flow<List<ToDoTask>> {
+    override fun getFavouriteTask(): Flow<List<ToDoTask>> {
         return taskDao.getFavouriteTask()
     }
 

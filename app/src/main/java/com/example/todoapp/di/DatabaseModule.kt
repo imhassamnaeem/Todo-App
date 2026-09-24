@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.example.todoapp.data.local.dao.TodoTaskDao
 import com.example.todoapp.data.local.database.AppDatabase
-import com.example.todoapp.utils.database_name
+import com.example.todoapp.core.shared.utils.database_name
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,5 +31,4 @@ object DatabaseModule {
     fun provideTodoDao(database : AppDatabase) : TodoTaskDao{
         return database.todoTaskDao()
     }
-
 }

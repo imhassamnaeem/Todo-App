@@ -1,4 +1,4 @@
-package com.example.todoapp.presentation.addtodo
+package com.example.todoapp.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

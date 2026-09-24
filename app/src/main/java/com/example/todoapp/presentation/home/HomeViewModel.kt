@@ -3,7 +3,7 @@ package com.example.todoapp.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.todoapp.data.local.entity.ToDoTask
-import com.example.todoapp.domain.repository.TaskRepository
+import com.example.todoapp.domain.repo.TaskRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -11,7 +11,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: TaskRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val repository: TaskRepo
+) : ViewModel() {
 
     private val _homeEvent = MutableSharedFlow<HomeEvent>()
     val homeEvent = _homeEvent.asSharedFlow()
@@ -42,11 +44,9 @@ class HomeViewModel @Inject constructor(private val repository: TaskRepository) 
             repository.updateTask(updatedTask)
         }
     }
-
 }
 
 sealed class HomeEvent {
     data object OnNavigateToAddToDo : HomeEvent()
     data object OnNavigateToFavourite : HomeEvent()
-
 }

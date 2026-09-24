@@ -1,4 +1,4 @@
-package com.example.todoapp.core.datastore
+package com.example.todoapp.core.shared.datastore
 
 import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -20,10 +20,10 @@ class OnboardingDataPreferences @Inject constructor(
     val isOnboardingCompleted: Flow<Boolean> = context.dataStore.data.map { preferences ->
         preferences[onboardingCompletedKey] ?: false
     }
+
     suspend fun setOnboardingCompleted() {
         context.dataStore.edit { preferences ->
             preferences[onboardingCompletedKey] = true
         }
     }
-
 }

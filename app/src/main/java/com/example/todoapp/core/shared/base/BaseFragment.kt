@@ -1,4 +1,4 @@
-package com.example.todoapp.presentation.base
+package com.example.todoapp.core.shared.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
