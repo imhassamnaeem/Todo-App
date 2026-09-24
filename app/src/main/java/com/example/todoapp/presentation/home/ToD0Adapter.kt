@@ -19,7 +19,6 @@ class TaskAdapter(
         parent: ViewGroup,
         viewType: Int
     ): TaskViewHolder {
-
         val binding = ItemTasksBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -34,7 +33,6 @@ class TaskAdapter(
     ) {
         val task = getItem(position)
         holder.binding.apply {
-
             tvTaskName.text = task.title
             tvTaskDetail.text = task.description
             btnFavourite.setImageResource(
@@ -59,7 +57,10 @@ class TaskAdapter(
         }
     }
 
-    class TaskViewHolder(val binding: ItemTasksBinding) : RecyclerView.ViewHolder(binding.root)
+    class TaskViewHolder(
+        val binding: ItemTasksBinding
+    ) : RecyclerView.ViewHolder(binding.root)
+
     class TodoDiffCallBack : DiffUtil.ItemCallback<ToDoTask>() {
         override fun areItemsTheSame(
             oldItem: ToDoTask,
@@ -74,6 +75,5 @@ class TaskAdapter(
         ): Boolean {
             return oldItem == newItem
         }
-
     }
 }
