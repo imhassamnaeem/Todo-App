@@ -33,6 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_favourite"/>
+        tools:listitem="@layout/item_favourite"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

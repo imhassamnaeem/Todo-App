@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textview.MaterialTextView
-            android:layout_width="@dimen/_40sdp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/tasks_list"
@@ -34,10 +34,10 @@
             android:layout_height="@dimen/_48sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/favbutton"
             android:padding="@dimen/_8sdp"
             android:scaleType="fitCenter"
             android:src="@drawable/favourite" />
-
 
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
@@ -51,6 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_tasks"
         />
 
@@ -65,6 +66,6 @@
     android:layout_marginBottom="@dimen/_40sdp"
     android:src="@drawable/writefloatingicon"
     app:maxImageSize="@dimen/_40sdp"
-    android:backgroundTint="@color/ButtonColor"/>
+    android:backgroundTint="@color/ButtonColor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
