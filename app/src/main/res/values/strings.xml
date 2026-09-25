@@ -23,4 +23,9 @@
     <string name="remove_from_favourites">Remove from favourites</string>
     <string name="description">description</string>
     <string name="favbutton">favButton</string>
+    <string name="description_required">Description is required</string>
+    <string name="title_required">Title is required</string>
+    <string name="update_task">Update Task</string>
+    <string name="update">Update</string>
+
 </resources>
