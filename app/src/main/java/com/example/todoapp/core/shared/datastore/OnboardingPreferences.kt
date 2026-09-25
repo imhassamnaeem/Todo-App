@@ -9,12 +9,13 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 @Singleton
 class OnboardingDataPreferences @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) {
-    private val onboardingCompletedKey = booleanPreferencesKey("onboarding_completed")
+    private val onboardingCompletedKey =
+        booleanPreferencesKey("onboarding_completed")
+
     val isOnboardingCompleted: Flow<Boolean> =
         dataStore.data.map { preferences ->
             preferences[onboardingCompletedKey] ?: false

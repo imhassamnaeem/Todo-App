@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 fun Fragment.loadAndCollectOnStarted(
     block: suspend CoroutineScope.() -> Unit
-){
+) {
     viewLifecycleOwner.lifecycleScope.launch {
         viewLifecycleOwner.repeatOnLifecycle(
             Lifecycle.State.STARTED,
