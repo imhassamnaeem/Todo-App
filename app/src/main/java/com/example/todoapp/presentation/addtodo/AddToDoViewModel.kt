@@ -19,7 +19,14 @@ class AddToDoViewModel @Inject constructor(
     ViewModel() {
     private val _taskEvent = MutableSharedFlow<TaskEvent>()
     val taskEvent = _taskEvent.asSharedFlow()
-    
+
+    val taskId = savedStateHandle.get<Int>("taskId")?: -1
+
+    init {
+        if (taskId != -1) {
+            getTaskById(taskId)
+        }
+    }
     fun insertTask(task: ToDoTask) {
         viewModelScope.launch {
             repository.insertTask(task)
@@ -35,12 +42,12 @@ class AddToDoViewModel @Inject constructor(
     fun getTaskById(taskId: Int) {
         viewModelScope.launch {
         val task = repository.getTaskById(taskId)
-            _taskEvent.emit(TaskEvent.TaskInserted(task))
+            _taskEvent.emit(TaskEvent.NavigateToUpdate(task))
         }
     }
 }
 
 sealed class TaskEvent {
     data object NavigateToHome : TaskEvent()
-    data class TaskInserted(val task: ToDoTask?) : TaskEvent()
+    data class NavigateToUpdate(val task: ToDoTask?) : TaskEvent()
 }
