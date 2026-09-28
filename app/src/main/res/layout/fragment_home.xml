@@ -54,6 +54,18 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_tasks"
         />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/emptyStateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_tasks_yet_click_on_fab_to_add"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="normal"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/taskHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/floating_action_edit_button"
