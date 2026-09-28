@@ -3,6 +3,7 @@ package com.example.todoapp.presentation.favourite
 import androidx.fragment.app.viewModels
 import com.example.todoapp.core.shared.base.BaseFragment
 import com.example.todoapp.core.shared.extensions.loadAndCollectOnStarted
+import com.example.todoapp.core.shared.extensions.showToast
 import com.example.todoapp.databinding.FragmentFavouritBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,6 +16,7 @@ class FavouriteFragment : BaseFragment<FragmentFavouritBinding, FavouriteViewMod
     private val favouriteAdapter = FavouriteAdapter(
         onFavouriteClick = { task ->
             viewModel.removeFromFavourite(task)
+            showToast("Task removed from favourites")
         }
     )
 
