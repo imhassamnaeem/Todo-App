@@ -4,7 +4,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.todoapp.R
 import com.example.todoapp.core.shared.base.BaseFragment
+import com.example.todoapp.core.shared.extensions.hide
 import com.example.todoapp.core.shared.extensions.loadAndCollectOnStarted
+import com.example.todoapp.core.shared.extensions.show
 import com.example.todoapp.core.shared.extensions.showDeleteDialog
 import com.example.todoapp.core.shared.extensions.showToast
 import com.example.todoapp.databinding.FragmentHomeBinding
@@ -58,6 +60,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         {
             viewModel.tasks.collect { task ->
                 taskAdapter.submitList(task)
+                with(binding) {
+                    if (task.isEmpty()) {
+                        tasksRecyclerView.hide()
+                        emptyStateText.show()
+                    } else {
+                        tasksRecyclerView.show()
+                        emptyStateText.hide()
+                    }
+                }
             }
         }
 
