@@ -27,5 +27,7 @@
     <string name="title_required">Title is required</string>
     <string name="update_task">Update Task</string>
     <string name="update">Update</string>
+    <string name="no_tasks_yet">No tasks yet</string>
+    <string name="no_tasks_yet_click_on_fab_to_add">No tasks yet.Click on FAB to Add</string>
 
 </resources>
