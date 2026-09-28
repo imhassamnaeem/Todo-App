@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.todoapp.R
 import com.example.todoapp.core.shared.base.BaseFragment
 import com.example.todoapp.core.shared.extensions.loadAndCollectOnStarted
+import com.example.todoapp.core.shared.extensions.showToast
 import com.example.todoapp.data.local.entity.ToDoTask
 import com.example.todoapp.databinding.FragmentAddToDoBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,12 +37,14 @@ class AddToDoFragment : BaseFragment<FragmentAddToDoBinding, AddToDoViewModel>(
                         description = description
                     )
                     viewModel.insertTask(task)
+                    showToast("Task added successfully")
                 } else {
                     val updateTask = currentTask!!.copy(
                         title = title,
                         description = description
                     )
                     viewModel.updateTask(updateTask)
+                    showToast("Task updated successfully")
                 }
             }
         }
