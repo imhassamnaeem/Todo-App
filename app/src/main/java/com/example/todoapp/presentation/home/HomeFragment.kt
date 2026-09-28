@@ -4,8 +4,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.todoapp.R
 import com.example.todoapp.core.shared.base.BaseFragment
-import com.example.todoapp.databinding.FragmentHomeBinding
 import com.example.todoapp.core.shared.extensions.loadAndCollectOnStarted
+import com.example.todoapp.core.shared.extensions.showDeleteDialog
+import com.example.todoapp.core.shared.extensions.showToast
+import com.example.todoapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,17 +16,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 ) {
     override val viewModel: HomeViewModel by viewModels()
 
-    private val taskAdapter =  TaskAdapter(
-        onFavouriteClick = {task ->
+    private val taskAdapter = TaskAdapter(
+        onFavouriteClick = { task ->
             viewModel.addToFavourite(task)
+            showToast("Task added to favourite")
         },
-        onEditClick = {task ->
+
+        onEditClick = { task ->
             val action = HomeFragmentDirections
                 .actionHomeFragmentToAddToDoFragment(task.id)
             findNavController().navigate(action)
         },
-        onDeleteClick = {task ->
-            viewModel.deleteTask(task)
+
+        onDeleteClick = { task ->
+            showDeleteDialog(
+                "Delete Task",
+                "Are you sure you want to delete this task?",
+                positiveText = "Delete",
+                onConfirm = {
+                    viewModel.deleteTask(task)
+                    showToast("Task deleted successfully")
+                }
+            )
         }
     )
 
