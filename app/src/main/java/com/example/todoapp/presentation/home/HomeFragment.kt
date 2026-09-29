@@ -56,7 +56,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     }
 
     override fun observeData() {
-        loadAndCollectOnStarted() {
+        loadAndCollectOnStarted {
             viewModel.tasks.collect { task ->
                 taskAdapter.submitList(task)
                 with(binding) {
