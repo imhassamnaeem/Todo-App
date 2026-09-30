@@ -25,9 +25,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         },
 
         onEditClick = { task ->
-            val action = HomeFragmentDirections
-                .actionHomeFragmentToAddToDoFragment(task.id)
-            findNavController().navigate(action)
+           viewModel.navigateToEdit(task.id)
         },
 
         onDeleteClick = { task ->
@@ -75,10 +73,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             viewModel.homeEvent.collect { event ->
                 when (event) {
                     is HomeEvent.OnNavigateToAddToDo ->
-                        findNavController().navigate(R.id.action_homeFragment_to_addToDoFragment)
+                        findNavController().
+                        navigate(R.id.action_homeFragment_to_addToDoFragment)
 
                     is HomeEvent.OnNavigateToFavourite ->
-                        findNavController().navigate(R.id.action_homeFragment_to_favouritFragment)
+                        findNavController().
+                        navigate(R.id.action_homeFragment_to_favouritFragment)
+
+                    is HomeEvent.OnNavigateToEdit->
+                        findNavController().navigate(
+                            HomeFragmentDirections.
+                            actionHomeFragmentToAddToDoFragment(event.taskId)
+                        )
                 }
             }
         }

@@ -39,6 +39,14 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun navigateToEdit(taskId: Int){
+        viewModelScope.launch {
+            _homeEvent.emit(
+                HomeEvent.OnNavigateToEdit(taskId)
+            )
+        }
+    }
+
     fun deleteTask(task: ToDoTask) {
         viewModelScope.launch {
             repository.deleteTask(task)
@@ -56,4 +64,5 @@ class HomeViewModel @Inject constructor(
 sealed class HomeEvent {
     data object OnNavigateToAddToDo : HomeEvent()
     data object OnNavigateToFavourite : HomeEvent()
+    data class OnNavigateToEdit(val taskId: Int) : HomeEvent()
 }
