@@ -34,7 +34,7 @@ fun Fragment.showToast(
 fun Fragment.showDeleteDialog(
     title: String,
     message: String,
-    positiveText: String = "Yes",
+    positiveText: String,
     onConfirm: () -> Unit
 ) {
     AlertDialog.Builder(requireContext())
