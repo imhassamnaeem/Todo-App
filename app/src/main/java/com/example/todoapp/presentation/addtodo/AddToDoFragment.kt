@@ -6,8 +6,8 @@ import com.example.todoapp.R
 import com.example.todoapp.core.shared.base.BaseFragment
 import com.example.todoapp.core.shared.extensions.loadAndCollectOnStarted
 import com.example.todoapp.core.shared.extensions.showToast
-import com.example.todoapp.data.local.entity.ToDoTask
 import com.example.todoapp.databinding.FragmentAddToDoBinding
+import com.example.todoapp.domain.model.TodoTaskModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,7 +16,7 @@ class AddToDoFragment : BaseFragment<FragmentAddToDoBinding, AddToDoViewModel>(
 ) {
     override val viewModel: AddToDoViewModel by viewModels()
 
-    private var currentTask: ToDoTask? = null
+    private var currentTask: TodoTaskModel? = null
 
     override fun setUpViews() {
         binding.apply {
@@ -32,7 +32,7 @@ class AddToDoFragment : BaseFragment<FragmentAddToDoBinding, AddToDoViewModel>(
                     return@setOnClickListener
                 }
                 if (currentTask == null) {
-                    val task = ToDoTask(
+                    val task = TodoTaskModel(
                         title = title,
                         description = description
                     )
