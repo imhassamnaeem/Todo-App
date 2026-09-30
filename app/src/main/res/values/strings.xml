@@ -29,5 +29,6 @@
     <string name="update">Update</string>
     <string name="no_tasks_yet">No tasks yet</string>
     <string name="no_tasks_yet_click_on_fab_to_add">No tasks yet.Click on FAB to Add</string>
+    <string name="no_tasks_favourite_yet">No Tasks Favourite Yet</string>
 
 </resources>
