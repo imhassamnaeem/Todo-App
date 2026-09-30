@@ -2,7 +2,7 @@ package com.example.todoapp.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todoapp.data.local.entity.ToDoTask
+import com.example.todoapp.domain.model.TodoTaskModel
 import com.example.todoapp.domain.repo.TaskRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -39,7 +39,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun navigateToEdit(taskId: Int){
+    fun navigateToEdit(taskId: Int) {
         viewModelScope.launch {
             _homeEvent.emit(
                 HomeEvent.OnNavigateToEdit(taskId)
@@ -47,13 +47,13 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun deleteTask(task: ToDoTask) {
+    fun deleteTask(task: TodoTaskModel) {
         viewModelScope.launch {
             repository.deleteTask(task)
         }
     }
 
-    fun addToFavourite(task: ToDoTask) {
+    fun addToFavourite(task: TodoTaskModel) {
         val updatedTask = task.copy(isFavourite = !task.isFavourite)
         viewModelScope.launch {
             repository.updateTask(updatedTask)
