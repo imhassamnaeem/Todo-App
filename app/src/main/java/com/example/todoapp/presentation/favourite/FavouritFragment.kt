@@ -2,7 +2,9 @@ package com.example.todoapp.presentation.favourite
 
 import androidx.fragment.app.viewModels
 import com.example.todoapp.core.shared.base.BaseFragment
+import com.example.todoapp.core.shared.extensions.hide
 import com.example.todoapp.core.shared.extensions.loadAndCollectOnStarted
+import com.example.todoapp.core.shared.extensions.show
 import com.example.todoapp.core.shared.extensions.showToast
 import com.example.todoapp.databinding.FragmentFavouritBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,16 @@ class FavouriteFragment : BaseFragment<FragmentFavouritBinding, FavouriteViewMod
         {
             viewModel.favouriteTasks.collect { tasks ->
                 favouriteAdapter.submitList(tasks)
+                with(binding){
+                    if (tasks.isEmpty()){
+                        favouriteRecyclerView.hide()
+                        emptyFavStateText.show()
+                    }
+                    else{
+                        favouriteRecyclerView.show()
+                        emptyFavStateText.hide()
+                    }
+                }
             }
         }
     }
