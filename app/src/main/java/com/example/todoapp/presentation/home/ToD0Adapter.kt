@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
-import com.example.todoapp.data.local.entity.ToDoTask
 import com.example.todoapp.databinding.ItemTasksBinding
+import com.example.todoapp.domain.model.TodoTaskModel
 
 class TaskAdapter(
-    private val onFavouriteClick: (ToDoTask) -> Unit,
-    private val onEditClick: (ToDoTask) -> Unit,
-    private val onDeleteClick: (ToDoTask) -> Unit
-) : ListAdapter<ToDoTask, TaskAdapter.TaskViewHolder>(TodoDiffCallBack()) {
+    private val onFavouriteClick: (TodoTaskModel) -> Unit,
+    private val onEditClick: (TodoTaskModel) -> Unit,
+    private val onDeleteClick: (TodoTaskModel) -> Unit
+) : ListAdapter<TodoTaskModel, TaskAdapter.TaskViewHolder>(TodoDiffCallBack()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -61,17 +61,17 @@ class TaskAdapter(
         val binding: ItemTasksBinding
     ) : RecyclerView.ViewHolder(binding.root)
 
-    class TodoDiffCallBack : DiffUtil.ItemCallback<ToDoTask>() {
+    class TodoDiffCallBack : DiffUtil.ItemCallback<TodoTaskModel>() {
         override fun areItemsTheSame(
-            oldItem: ToDoTask,
-            newItem: ToDoTask
+            oldItem: TodoTaskModel,
+            newItem: TodoTaskModel
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: ToDoTask,
-            newItem: ToDoTask
+            oldItem: TodoTaskModel,
+            newItem: TodoTaskModel
         ): Boolean {
             return oldItem == newItem
         }
