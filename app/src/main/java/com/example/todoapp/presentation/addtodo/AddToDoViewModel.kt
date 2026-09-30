@@ -3,7 +3,7 @@ package com.example.todoapp.presentation.addtodo
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todoapp.data.local.entity.ToDoTask
+import com.example.todoapp.domain.model.TodoTaskModel
 import com.example.todoapp.domain.repo.TaskRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,28 +20,31 @@ class AddToDoViewModel @Inject constructor(
     private val _taskEvent = MutableSharedFlow<TaskEvent>()
     val taskEvent = _taskEvent.asSharedFlow()
 
-    val taskId = savedStateHandle.get<Int>("taskId")?: -1
+    val taskId = savedStateHandle.get<Int>("taskId") ?: -1
 
     init {
         if (taskId != -1) {
             getTaskById(taskId)
         }
     }
-    fun insertTask(task: ToDoTask) {
+
+    fun insertTask(task: TodoTaskModel) {
         viewModelScope.launch {
             repository.insertTask(task)
             _taskEvent.emit(TaskEvent.NavigateToHome)
         }
     }
-    fun updateTask(task: ToDoTask){
+
+    fun updateTask(task: TodoTaskModel) {
         viewModelScope.launch {
             repository.updateTask(task)
             _taskEvent.emit(TaskEvent.NavigateToHome)
         }
     }
+
     fun getTaskById(taskId: Int) {
         viewModelScope.launch {
-        val task = repository.getTaskById(taskId)
+            val task = repository.getTaskById(taskId)
             _taskEvent.emit(TaskEvent.NavigateToUpdate(task))
         }
     }
@@ -49,5 +52,5 @@ class AddToDoViewModel @Inject constructor(
 
 sealed class TaskEvent {
     data object NavigateToHome : TaskEvent()
-    data class NavigateToUpdate(val task: ToDoTask?) : TaskEvent()
+    data class NavigateToUpdate(val task: TodoTaskModel?) : TaskEvent()
 }
