@@ -8,6 +8,7 @@ import com.example.todoapp.data.local.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -17,9 +18,9 @@ import javax.inject.Singleton
 object DatabaseModule {
     @Provides
     @Singleton
-    fun provideTodoDatabase(app: Context): AppDatabase {
+    fun provideTodoDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
-            app,
+            context,
             AppDatabase::class.java,
             database_name
         ).build()
