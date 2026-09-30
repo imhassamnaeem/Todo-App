@@ -2,7 +2,7 @@ package com.example.todoapp.presentation.favourite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todoapp.data.local.entity.ToDoTask
+import com.example.todoapp.domain.model.TodoTaskModel
 import com.example.todoapp.domain.repo.TaskRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -21,7 +21,7 @@ class FavouriteViewModel @Inject constructor(
             emptyList()
         )
 
-    fun removeFromFavourite(task: ToDoTask) {
+    fun removeFromFavourite(task: TodoTaskModel) {
         val updatedTask = task.copy(isFavourite = false)
         viewModelScope.launch {
             repository.updateTask(updatedTask)
