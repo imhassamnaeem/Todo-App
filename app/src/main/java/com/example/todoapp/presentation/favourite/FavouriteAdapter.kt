@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
-import com.example.todoapp.data.local.entity.ToDoTask
 import com.example.todoapp.databinding.ItemFavouriteBinding
+import com.example.todoapp.domain.model.TodoTaskModel
 
 class FavouriteAdapter(
-    private val onFavouriteClick: (ToDoTask) -> Unit
-) : ListAdapter<ToDoTask, FavouriteAdapter.FavouriteViewHolder>
+    private val onFavouriteClick: (TodoTaskModel) -> Unit
+) : ListAdapter<TodoTaskModel, FavouriteAdapter.FavouriteViewHolder>
     (
     FavouriteDiffCallBack()
 ) {
@@ -48,17 +48,17 @@ class FavouriteAdapter(
     class FavouriteViewHolder(val binding: ItemFavouriteBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    class FavouriteDiffCallBack : DiffUtil.ItemCallback<ToDoTask>() {
+    class FavouriteDiffCallBack : DiffUtil.ItemCallback<TodoTaskModel>() {
         override fun areItemsTheSame(
-            oldItem: ToDoTask,
-            newItem: ToDoTask
+            oldItem: TodoTaskModel,
+            newItem: TodoTaskModel
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: ToDoTask,
-            newItem: ToDoTask
+            oldItem: TodoTaskModel,
+            newItem: TodoTaskModel
         ): Boolean {
             return oldItem == newItem
         }
